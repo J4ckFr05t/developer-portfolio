@@ -28,83 +28,91 @@ import VanillaTilt from "vanilla-tilt";
 import { motion } from "framer-motion";
 
 const aboutStats = [
-  { label: "Years of experience", value: "3+" },
-  { label: "Technologies mastered", value: "5+" },
-  { label: "Companies worked with", value: "15+" },
+  { label: "Years of experience", value: "2+" },
+  { label: "Endpoints Secured", value: "1M+" },
+  { label: "Machines Pwned", value: "40+" },
 ];
+
+const certifications = [
+  {
+    title: "EC Council, CEH",
+    description: "EC Council, CEH",
+    image: "/assets/CEH.jpg",
+    href: "https://drive.google.com/file/d/1Wz0TD9w2ahrd0DhUXHYtYnl6mHTumubL/view?usp=sharing",
+  },
+  {
+    title: "CompTIA Security+",
+    description: "CompTIA Security+",
+    image: "/assets/sec+.jpg",
+    href: "https://drive.google.com/file/d/1TOy72t94_QunIFBsy_fLr_t5Kv68hPxy/view?usp=sharing",
+  }
+]
 
 const projects = [
   {
-    title: "Unqueue",
-    description: "E-commerce platform for selling digital products",
-    image: "/assets/unqueue.webm",
-    href: "https://unqueue.shop/",
+    title: "Cybersecurity Research Lab",
+    description: "Building a Cybersecurity Research Lab",
+    image: "/assets/cs_lab.jpg",
+    href: "https://medium.com/@jibingeorge.mg/cybersecurity-research-lab-setup-5beb54d8dd59",
   },
   {
-    title: "InfiniteVPS",
-    description: "High performance VPS hosting solution",
-    image: "/assets/infinitevps.webm",
+    title: "Malware Analysis using CNN and OSINT",
+    description: "Malware Analysis using Convolutional Neural Networks and OSINT",
+    image: "/assets/malware_detection.jpg",
+    href: "https://github.com/J4ckFr05t/Malware-Detection-using-CNN-and-OSINT",
+  },
+  {
+    title: "Threat Hunting",
+    description: "Threat Hunting using Machine Learning Algorithms and OSINT",
+    image: "/assets/threat_hunting.jpg",
     href: "#",
-  },
-  {
-    title: "TranslateBot",
-    description: "Powerful Multilingual Translation Bot for Discord",
-    image: "/assets/translate_bot.webm",
-    href: "https://translatebot.app/",
-  },
-  {
-    title: "Wrona",
-    description: "Robotics-focused technology company",
-    image: "/assets/wrona.jpeg",
-    href: "https://www.wrona.com/",
-  },
-  {
-    title: "This website",
-    description: "My personal website",
-    image: "/assets/portfolio.webm",
-    href: "https://github.com/wendoj/portfolio",
-  },
+  }
 ];
 
 const services = [
   {
-    service: "Frontend Development",
+    service: "Penetration Testing",
     description:
-      "Creating stellar user interfaces and web experiences using the latest technologies.",
+      "Conducted extensive penetration tests by identifying vulnerabilities, and achieved elite hacker rank in HackTheBox.",
     icon: Code2,
   },
   {
-    service: "UX Design",
+    service: "Vulnerability Management",
     description:
-      "Building intuitive, user-centric designs that drive engagement and conversion.",
+      "Led vulnerability management efforts at a Fortune 500 company, pinpointing critical weaknesses and developing effective remediation strategies.",
     icon: Frame,
   },
   {
-    service: "SEO Optimization",
+    service: "Continuous Control and Monitoring",
     description:
-      "Enhancing your website's visibility in search engines for increased organic traffic.",
+      "Implemented continuous control measures and monitoring for enterprise systems, ensuring real-time detection and response to threats.",
     icon: SearchCheck,
   },
   {
-    service: "Responsive Design",
+    service: "Security Use Case Development",
     description:
-      "Designing websites that look and perform equally well on all devices and screen sizes.",
+      "Developed customized security use cases for a Fortune 500 client, enhancing incident response and proactive defense capabilities.",
     icon: MonitorSmartphone,
   },
   {
-    service: "Backend Development",
+    service: "Security Data Analysis",
     description:
-      "Developing robust, scalable server-side logic for a wide range of web applications.",
+      "Executed security data analysis with tools like Wiz, Tanium, Tenable, Nessus, Azure AD, and Lansweeper to drive security improvements.",
     icon: Eye,
   },
 ];
 
+
 export default function Home() {
   const refScrollContainer = useRef(null);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
-  const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
-  const [current, setCurrent] = useState<number>(0);
-  const [count, setCount] = useState<number>(0);
+  const [carouselApi1, setCarouselApi1] = useState<CarouselApi | null>(null);
+  const [current1, setCurrent1] = useState<number>(0);
+  const [count1, setCount1] = useState<number>(0);
+
+  const [carouselApi2, setCarouselApi2] = useState<CarouselApi | null>(null);
+  const [current2, setCurrent2] = useState<number>(0);
+  const [count2, setCount2] = useState<number>(0);
 
   // handle scroll
   useEffect(() => {
@@ -149,15 +157,26 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (!carouselApi) return;
+    if (!carouselApi1) return;
 
-    setCount(carouselApi.scrollSnapList().length);
-    setCurrent(carouselApi.selectedScrollSnap() + 1);
+    setCount1(carouselApi1.scrollSnapList().length);
+    setCurrent1(carouselApi1.selectedScrollSnap() + 1);
 
-    carouselApi.on("select", () => {
-      setCurrent(carouselApi.selectedScrollSnap() + 1);
+    carouselApi1.on("select", () => {
+      setCurrent1(carouselApi1.selectedScrollSnap() + 1);
     });
-  }, [carouselApi]);
+  }, [carouselApi1]);
+
+  useEffect(() => {
+    if (!carouselApi2) return;
+
+    setCount2(carouselApi2.scrollSnapList().length);
+    setCurrent2(carouselApi2.selectedScrollSnap() + 1);
+
+    carouselApi2.on("select", () => {
+      setCurrent2(carouselApi2.selectedScrollSnap() + 1);
+    });
+  }, [carouselApi2]);
 
   // card hover effect
   useEffect(() => {
@@ -190,9 +209,9 @@ export default function Home() {
               data-scroll-speed=".09"
               className="flex flex-row items-center space-x-1.5"
             >
-              <span className={styles.pill}>next.js</span>
-              <span className={styles.pill}>tailwindcss</span>
-              <span className={styles.pill}>typescript</span>
+              <span className={styles.pill}>Cybersecurity</span>
+              <span className={styles.pill}>Penetration Testing</span>
+              <span className={styles.pill}>Security Data Analysis</span>
             </div>
             <div>
               <h1
@@ -206,7 +225,7 @@ export default function Home() {
                   <br />
                 </span>
                 <span className="clash-grotesk text-gradient text-6xl 2xl:text-8xl">
-                  WendoJ.
+                  Jibin George.
                 </span>
               </h1>
               <p
@@ -215,8 +234,7 @@ export default function Home() {
                 data-scroll-speed=".06"
                 className="mt-1 max-w-lg tracking-tight text-muted-foreground 2xl:text-xl"
               >
-                An experienced full-stack website developer with a passion for
-                crafting unique digital experiences.
+                Currently working as a Security Analyst at Prevalent AI. In my role, I develop advanced security use cases, optimize incident response, and help improve security posture for Fortune 500 companies. 
               </p>
             </div>
             <span
@@ -225,7 +243,7 @@ export default function Home() {
               data-scroll-speed=".06"
               className="flex flex-row items-center space-x-1.5 pt-6"
             >
-              <Link href="mailto:wendoj@proton.me" passHref>
+              <Link href="mailto:jibingeorge.mg@gmail.com" passHref>
                 <Button>
                   Get in touch <ChevronRight className="ml-1 h-4 w-4" />
                 </Button>
@@ -269,19 +287,7 @@ export default function Home() {
             className="my-14 flex max-w-6xl flex-col justify-start space-y-10"
           >
             <h2 className="py-16  pb-2 text-3xl font-light leading-normal tracking-tighter text-foreground xl:text-[40px]">
-              I&apos;m an experienced full-stack developer proficient in{" "}
-              <Link
-                href="https://create.t3.gg/"
-                target="_blank"
-                className="underline"
-              >
-                TypeScript, Tailwind, and Next.js
-              </Link>{" "}
-              since 2021. My experience spans from startups to mid-sized
-              companies, where I&apos;ve been instrumental in the entire product
-              design process; from ideation and wireframing, through
-              prototyping, to the delivery of the final product, all while
-              efficiently collaborating with cross-functional teams.
+            I&apos;m a Cybersecurity Analyst specializing in Vulnerability Assessment and Penetration Testing (VAPT). With over two years of experience working with Fortune 500 companies, I&apos;ve developed security use cases and streamlined incident response using tools like Splunk, SQL, and Tableau. I&apos;m also ranked as an &apos;Elite Hacker&apos; on HackTheBox and hold certifications like CompTIA Security+ and CEH. Passionate about solving complex security challenges, I enjoy sharing my insights on cybersecurity through my blog.
             </h2>
             <div className="grid grid-cols-2 gap-8 xl:grid-cols-3">
               {aboutStats.map((stat) => (
@@ -297,6 +303,86 @@ export default function Home() {
                   </span>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* certifications */}
+        <section id="certifications" data-scroll-section>
+          {/* Gradient */}
+          <div className="relative isolate -z-10">
+            <div
+              className="absolute inset-x-0 -top-40 transform-gpu overflow-hidden blur-[100px] sm:-top-80 lg:-top-60"
+              aria-hidden="true"
+            >
+              <div
+                className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary via-primary to-secondary opacity-10 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+                style={{
+                  clipPath:
+                    "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+                }}
+              />
+            </div>
+          </div>
+          <div data-scroll data-scroll-speed=".4" className="my-64">
+            <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
+              ✨ Certifications
+            </span>
+            <h2 className="mt-3 text-4xl font-semibold tracking-tight tracking-tighter xl:text-6xl">
+              Cybsecurity Certifications.
+            </h2>
+            <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
+            Here are the cybersecurity certifications I have completed:
+            </p>
+
+            {/* Carousel */}
+            <div className="mt-14">
+              <Carousel setApi={setCarouselApi1} className="w-full">
+                <CarouselContent>
+                  {certifications.map((project) => (
+                    <CarouselItem key={project.title} className="md:basis-1/2">
+                      <Card id="tilt">
+                        <CardHeader className="p-0">
+                          <Link href={project.href} target="_blank" passHref>
+                            {project.image.endsWith(".webm") ? (
+                              <video
+                                src={project.image}
+                                autoPlay
+                                loop
+                                muted
+                                className="aspect-video h-full w-full rounded-t-md bg-primary object-cover"
+                              />
+                            ) : (
+                              <Image
+                                src={project.image}
+                                alt={project.title}
+                                width={600}
+                                height={300}
+                                quality={100}
+                                className="aspect-video h-full w-full rounded-t-md bg-primary object-cover"
+                              />
+                            )}
+                          </Link>
+                        </CardHeader>
+                        <CardContent className="absolute bottom-0 w-full bg-background/50 backdrop-blur">
+                          <CardTitle className="border-t border-white/5 p-4 text-base font-normal tracking-tighter">
+                            {project.description}
+                          </CardTitle>
+                        </CardContent>
+                      </Card>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+              {/* Uncomment below when multiple certifications */}
+              {/* <div className="py-2 text-center text-sm text-muted-foreground">
+                <span className="font-semibold">
+                  {current1} / {count1}
+                </span>{" "}
+                certifications
+              </div> */}
             </div>
           </div>
         </section>
@@ -323,16 +409,15 @@ export default function Home() {
               ✨ Projects
             </span>
             <h2 className="mt-3 text-4xl font-semibold tracking-tight tracking-tighter xl:text-6xl">
-              Streamlined digital experiences.
+              Cybersecurity Projects.
             </h2>
             <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
-              I&apos;ve worked on a variety of projects, from small websites to
-              large-scale web applications. Here are some of my favorites:
+            Here are the personal cybersecurity projects I have completed so far:
             </p>
 
             {/* Carousel */}
             <div className="mt-14">
-              <Carousel setApi={setCarouselApi} className="w-full">
+              <Carousel setApi={setCarouselApi2} className="w-full">
                 <CarouselContent>
                   {projects.map((project) => (
                     <CarouselItem key={project.title} className="md:basis-1/2">
@@ -373,7 +458,7 @@ export default function Home() {
               </Carousel>
               <div className="py-2 text-center text-sm text-muted-foreground">
                 <span className="font-semibold">
-                  {current} / {count}
+                  {current2} / {count2}
                 </span>{" "}
                 projects
               </div>
@@ -408,8 +493,7 @@ export default function Home() {
                   </span>
                 </h2>
                 <p className="mt-2 tracking-tighter text-secondary-foreground">
-                  Here are some of the services I offer. If you have any
-                  questions, feel free to reach out.
+                Here are some areas I&apos;ve contributed to. If you have any questions, please feel free to reach out!
                 </p>
               </div>
               {services.map((service) => (
@@ -443,10 +527,9 @@ export default function Home() {
               <span className="text-gradient clash-grotesk">together.</span>
             </h2>
             <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
-              I&apos;m currently available for freelance work and open to
-              discussing new projects.
+            Let&apos;s discuss how I can contribute to your success. I look forward to hearing from you!
             </p>
-            <Link href="mailto:wendoj@proton.me" passHref>
+            <Link href="mailto:jibingeorge.mg@gmail.com" passHref>
               <Button className="mt-6">Get in touch</Button>
             </Link>
           </div>
