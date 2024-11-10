@@ -72,6 +72,21 @@ const security_solutions = [
   },
 ]
 
+const achievements = [
+  {
+    title: "HTB Rank",
+    description: "Elite Hacker Rank, Hack The Box",
+    image: "/assets/htb_rank.png",
+    href: "#",
+  },
+  {
+    title: "KaPAI",
+    description: "KaPAI Awards, Prevalent AI",
+    image: "/assets/kapai_focused.png",
+    href: "#",
+  },
+]
+
 const certifications = [
   {
     title: "EC Council, CEH",
@@ -157,6 +172,10 @@ export default function Home() {
   const [current3, setCurrent3] = useState<number>(0);
   const [count3, setCount3] = useState<number>(0);
 
+  const [carouselApi4, setCarouselApi4] = useState<CarouselApi | null>(null);
+  const [current4, setCurrent4] = useState<number>(0);
+  const [count4, setCount4] = useState<number>(0);
+
   // handle scroll
   useEffect(() => {
     const sections = document.querySelectorAll("section");
@@ -231,6 +250,17 @@ export default function Home() {
       setCurrent3(carouselApi3.selectedScrollSnap() + 1);
     });
   }, [carouselApi3]);
+
+  useEffect(() => {
+    if (!carouselApi4) return;
+
+    setCount4(carouselApi4.scrollSnapList().length);
+    setCurrent4(carouselApi4.selectedScrollSnap() + 1);
+
+    carouselApi4.on("select", () => {
+      setCurrent4(carouselApi4.selectedScrollSnap() + 1);
+    });
+  }, [carouselApi4]);
 
   // card hover effect
   useEffect(() => {
@@ -361,6 +391,86 @@ export default function Home() {
           </div>
         </section>
 
+        {/* achievements */}
+        <section id="achievements" data-scroll-section>
+          {/* Gradient */}
+          <div className="relative isolate -z-10">
+            <div
+              className="absolute inset-x-0 -top-40 transform-gpu overflow-hidden blur-[100px] sm:-top-80 lg:-top-60"
+              aria-hidden="true"
+            >
+              <div
+                className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary via-primary to-secondary opacity-10 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+                style={{
+                  clipPath:
+                    "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+                }}
+              />
+            </div>
+          </div>
+          <div data-scroll data-scroll-speed=".4" className="my-64">
+            <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
+              ✨ Achievements
+            </span>
+            <h2 className="mt-3 text-4xl font-semibold tracking-tight tracking-tighter xl:text-6xl">
+              Achievements.
+            </h2>
+            <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
+            My Achievements:
+            </p>
+
+            {/* Carousel */}
+            <div className="mt-14">
+              <Carousel setApi={setCarouselApi4} className="w-full">
+                <CarouselContent>
+                  {achievements.map((project) => (
+                    <CarouselItem key={project.title} className="md:basis-1/2">
+                      <Card id="tilt">
+                        <CardHeader className="p-0">
+                          <Link href={project.href} target="_blank" passHref>
+                            {project.image.endsWith(".webm") ? (
+                              <video
+                                src={project.image}
+                                autoPlay
+                                loop
+                                muted
+                                className="aspect-video h-full w-full rounded-t-md bg-primary object-cover"
+                              />
+                            ) : (
+                              <Image
+                                src={project.image}
+                                alt={project.title}
+                                width={600}
+                                height={300}
+                                quality={100}
+                                className="aspect-video h-full w-full rounded-t-md bg-primary object-cover"
+                              />
+                            )}
+                          </Link>
+                        </CardHeader>
+                        <CardContent className="absolute bottom-0 w-full bg-background/50 backdrop-blur">
+                          <CardTitle className="border-t border-white/5 p-4 text-base font-normal tracking-tighter">
+                            {project.description}
+                          </CardTitle>
+                        </CardContent>
+                      </Card>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+              {/* Uncomment below when multiple tools */}
+              <div className="py-2 text-center text-sm text-muted-foreground">
+                <span className="font-semibold">
+                  {current4} / {count4}
+                </span>{" "}
+                Achievements
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* security_solutions */}
         <section id="security_solutions" data-scroll-section>
           {/* Gradient */}
@@ -435,7 +545,7 @@ export default function Home() {
                 <span className="font-semibold">
                   {current1} / {count1}
                 </span>{" "}
-                projects
+                tools
               </div>
             </div>
           </div>
